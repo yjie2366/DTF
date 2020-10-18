@@ -230,7 +230,8 @@ void print_stats()
     
    
     double avglibt = 0.0;
-     err = MPI_Allreduce(&(gl_proc.stats_info.user_timer_accum), &dblsum, 1, MPI_DOUBLE, MPI_SUM, gl_proc.comps[gl_proc.my_comp].comm);
+    
+    err = MPI_Allreduce(&(gl_proc.stats_info.user_timer_accum), &dblsum, 1, MPI_DOUBLE, MPI_SUM, gl_proc.comps[gl_proc.my_comp].comm);
      CHECK_MPI(err);
      avglibt = dblsum/nranks;
      dev = stand_devi(gl_proc.stats_info.user_timer_accum, dblsum, nranks);
