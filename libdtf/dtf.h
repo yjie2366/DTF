@@ -28,6 +28,8 @@ _EXTERN_C_ void dtf_tstart();
 _EXTERN_C_ void dtf_tend();
 _EXTERN_C_ void dtf_time_start();
 _EXTERN_C_ void dtf_time_end();
+_EXTERN_C_ void dtf_readtime_end();
+_EXTERN_C_ void dtf_writetime_end();
 _EXTERN_C_ int  dtf_transfer(const char *filename, int ncid );
 _EXTERN_C_ int  dtf_transfer_all_files();
 

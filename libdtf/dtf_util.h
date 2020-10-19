@@ -122,6 +122,8 @@ typedef struct stats{
     double          timer_accum;
     double          user_timer_start;
     double          user_timer_accum;
+    double	    user_readtimer_accum;
+    double	    user_writetimer_accum;
     unsigned int    nfiles;
     
     unsigned int    nmasters; //remember number of masters of the last opened file

@@ -86,6 +86,10 @@ _EXTERN_C_ int dtf_init(const char *filename, char *module_name)
     gl_proc.stats_info.nwreqs = 0;
 	gl_proc.stats_info.dtf_time = 0;
 	gl_proc.stats_info.t_idle = MPI_Wtime();
+	gl_proc.stats_info.user_timer_accum = 0;
+	gl_proc.stats_info.user_readtimer_accum = 0;
+	gl_proc.stats_info.user_writetimer_accum = 0;
+
 	gl_proc.msgbuf = NULL;
     gl_proc.fname_ptrns = NULL;
     gl_proc.filebuf_list = NULL;
@@ -518,6 +522,33 @@ _EXTERN_C_ void dtf_time_end()
  //   DTF_DBG(VERBOSE_DBG_LEVEL, "time_stat: user time %.4f", tt);
 }
 
+_EXTERN_C_ void dtf_readtime_end()
+{
+    double tt;
+    if(!lib_initialized) return;
+    tt = MPI_Wtime() - gl_proc.stats_info.user_timer_start;
+    gl_proc.stats_info.user_readtimer_accum += tt;
+    gl_proc.stats_info.user_timer_accum += tt;
+    gl_proc.stats_info.user_timer_start = 0;
+    
+	DTF_DBG(VERBOSE_DBG_LEVEL, "user_readtime end  %.6f", tt);
+    
+ //   DTF_DBG(VERBOSE_DBG_LEVEL, "time_stat: user time %.4f", tt);
+}
+
+_EXTERN_C_ void dtf_writetime_end()
+{
+    double tt;
+    if(!lib_initialized) return;
+    tt = MPI_Wtime() - gl_proc.stats_info.user_timer_start;
+    gl_proc.stats_info.user_writetimer_accum += tt;
+    gl_proc.stats_info.user_timer_accum += tt;
+    gl_proc.stats_info.user_timer_start = 0;
+    
+	DTF_DBG(VERBOSE_DBG_LEVEL, "user_writetime end  %.6f", tt);
+    
+ //   DTF_DBG(VERBOSE_DBG_LEVEL, "time_stat: user time %.4f", tt);
+}
 /************************************************  Fortran Interfaces  *********************************************************/
 
 _EXTERN_C_ void dtf_time_start_()
