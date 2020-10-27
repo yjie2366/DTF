@@ -4,7 +4,7 @@ SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 
 CFLAGS=-Wall -g -Wno-comment -pedantic
-MPICC=mpicc
+MPICC=mpifccpx
 
 #K
 #CFLAGS=-Wall -Xg -Wno-comment

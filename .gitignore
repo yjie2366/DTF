@@ -3,7 +3,6 @@
 *.o
 *.nc
 pnetcdf/src/libf/*.c
-Makefile
 !libdtf/Makefile
 pnetcdf/autom4te.cache/
 pnetcdf/config.log
@@ -47,3 +46,11 @@ pnetcdf/src/utils/ncoffsets/ncoffsets
 pnetcdf/src/utils/pnetcdf_version/pnetcdf_version
 pnetcdf/stamp-h
 pnetcdf/test/nf_test/tests.inc
+pnetcdf/Makefile
+pnetcdf/**/Makefile
+example/output
+example/**/*.mod
+*.sw*
+example/batch.sh
+example/reader/reader
+example/writer/writer
