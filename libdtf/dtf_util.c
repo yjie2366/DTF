@@ -153,6 +153,10 @@ void print_stats()
         DTF_DBG(VERBOSE_ERROR_LEVEL, "DTF STAT: pnetcdf I/O time: %.4f", gl_proc.stats_info.timer_accum);
 	if(gl_proc.stats_info.user_timer_accum > 0)
         DTF_DBG(VERBOSE_ERROR_LEVEL, "DTF STAT: user-measured I/O time: %.4f", gl_proc.stats_info.user_timer_accum);
+	if(gl_proc.stats_info.user_readtimer_accum > 0)
+        DTF_DBG(VERBOSE_ERROR_LEVEL, "DTF STAT: user-measured Read time: %.4f", gl_proc.stats_info.user_readtimer_accum);
+	if(gl_proc.stats_info.user_writetimer_accum > 0)
+        DTF_DBG(VERBOSE_ERROR_LEVEL, "DTF STAT: user-measured Write time: %.4f", gl_proc.stats_info.user_writetimer_accum);
 	if(gl_proc.stats_info.master_time > 0)
 		DTF_DBG(VERBOSE_ERROR_LEVEL, "DTF STAT: master time: %.4f", gl_proc.stats_info.master_time);
 	if(gl_proc.stats_info.transfer_time > 0)
@@ -229,13 +233,28 @@ void print_stats()
 	
     
    
-    //~ err = MPI_Allreduce(&(gl_proc.stats_info.user_timer_accum), &dblsum, 1, MPI_DOUBLE, MPI_SUM, gl_proc.comps[gl_proc.my_comp].comm);
-    //~ CHECK_MPI(err);
-    //~ avglibt = dblsum/nranks;
-    //~ dev = stand_devi(gl_proc.stats_info.user_timer_accum, dblsum, nranks);
-    //~ if(gl_proc.myrank==0 && avglibt > 0)
-        //~ DTF_DBG(VERBOSE_ERROR_LEVEL, "DTF STAT AVG: avg user timer time: %.5f : %.4f", avglibt, dev);
+    double avglibt = 0.0;
+    
+    err = MPI_Allreduce(&(gl_proc.stats_info.user_timer_accum), &dblsum, 1, MPI_DOUBLE, MPI_SUM, gl_proc.comps[gl_proc.my_comp].comm);
+     CHECK_MPI(err);
+     avglibt = dblsum/nranks;
+     dev = stand_devi(gl_proc.stats_info.user_timer_accum, dblsum, nranks);
+     if(gl_proc.myrank==0 && avglibt > 0)
+        DTF_DBG(VERBOSE_ERROR_LEVEL, "DTF STAT AVG: avg user timer time: %.5f : %.4f", avglibt, dev);
 
+    err = MPI_Allreduce(&(gl_proc.stats_info.user_readtimer_accum), &dblsum, 1, MPI_DOUBLE, MPI_SUM, gl_proc.comps[gl_proc.my_comp].comm);
+     CHECK_MPI(err);
+     avglibt = dblsum/nranks;
+     dev = stand_devi(gl_proc.stats_info.user_readtimer_accum, dblsum, nranks);
+     if(gl_proc.myrank==0 && avglibt > 0)
+        DTF_DBG(VERBOSE_ERROR_LEVEL, "DTF STAT AVG: avg user read time: %.5f : %.4f", avglibt, dev);
+
+    err = MPI_Allreduce(&(gl_proc.stats_info.user_writetimer_accum), &dblsum, 1, MPI_DOUBLE, MPI_SUM, gl_proc.comps[gl_proc.my_comp].comm);
+     CHECK_MPI(err);
+     avglibt = dblsum/nranks;
+     dev = stand_devi(gl_proc.stats_info.user_writetimer_accum, dblsum, nranks);
+     if(gl_proc.myrank==0 && avglibt > 0)
+        DTF_DBG(VERBOSE_ERROR_LEVEL, "DTF STAT AVG: avg user write time: %.5f : %.4f", avglibt, dev);
     //~ err = MPI_Reduce(&(gl_proc.stats_info.dtf_time), &dblsum, 1, MPI_DOUBLE, MPI_SUM, 0, gl_proc.comps[gl_proc.my_comp].comm);
     //~ CHECK_MPI(err);
     //~ if(gl_proc.myrank == 0 && dblsum > 0)
