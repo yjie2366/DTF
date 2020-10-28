@@ -3,26 +3,35 @@ cur_dir=$(cd $(dirname ${BASH_SOURCE[0]}) > /dev/null && pwd)
 batch_script=${cur_dir}/batch.sh
 log_dir=${cur_dir}/output
 
+grp_id=(`id -nG`)
+name=$(hostname)
+if [[ "${name}" == *"ofp"* ]]; then
+	rscgrp="regular-flat"
+else
+	rscgrp="eap-large"
+fi
+
 if [ ! -d ${log_dir} ]; then
 	mkdir -p ${log_dir}
 fi
 
-px=40
-py=40
-pz=20
+px=$1
+py=$2
+pz=$3
 
-psx=2
-psy=2
-psz=1
+psx=$4
+psy=$5
+psz=$6
+
 nproc=$(($psx*$psy*$psz))
 
 cat <<- EOF > ${batch_script}
 #!/bin/sh
 
 #PJM -L "node=$((nproc*2))"
-#PJM -L "rscgrp=eap-small"
+#PJM -L "rscgrp=${rscgrp}"
 #PJM -L "elapse=00:60:00"
-#PJM -g g9300001
+#PJM -g ${grp_id[-1]}
 #PJM -S
 #PJM --spath ${log_dir}/%n.%j.stat
 #PJM -o ${log_dir}/%n.%j.out

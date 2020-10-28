@@ -551,6 +551,16 @@ _EXTERN_C_ void dtf_writetime_end()
 }
 /************************************************  Fortran Interfaces  *********************************************************/
 
+_EXTERN_C_ void dtf_readtime_end_()
+{
+    dtf_readtime_end();
+}
+
+_EXTERN_C_ void dtf_writetime_end_()
+{
+    dtf_writetime_end();
+}
+
 _EXTERN_C_ void dtf_time_start_()
 {
     dtf_time_start();

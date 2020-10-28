@@ -116,33 +116,33 @@
          io_size = 8
          io_size = io_size * nx_g
          io_size = io_size * ny_g
-         io_size = io_size * ny_g
+         io_size = io_size * nz_g
          io_size = io_size / npes
-         if (io_size .GT. 2147483647) then
-             if (myid .EQ. 0) then
-                 print*, '******** Error ********'
-                 print*, '   Array size per process is too large for 4-byte integers'
-                 print*, '   Please use a smaller array size. Exit...'
-                 print*, '******** Error ********'
-             endif
-             call MPI_Finalize(err)
-             STOP
-         endif
+!         if (io_size .GT. 2147483647) then
+!             if (myid .EQ. 0) then
+!                 print*, '******** Error ********'
+!                 print*, '   Array size per process is too large for 4-byte integers'
+!                 print*, '   Please use a smaller array size. Exit...'
+!                 print*, '******** Error ********'
+!             endif
+!             call MPI_Finalize(err)
+!             STOP
+!         endif
 
          io_one_species_at_a_time = .FALSE.
          io_size = io_size * (11 + 3 + 2)
-         if (io_size .GT. 2147483647) then
-             if (myid .EQ. 0) then
-                 print*, '******** Warning ********'
-                 print*, 'Warning: Array size is too large for 4-byte integers'
-                 print*, 'Warning: I/O is now performed one species at a time'
-                 if (method .EQ. 1) &
-                     print*, 'Warning: Switch to blocking I/O method'
-                 print*, '******** Warning ********'
-             endif
-             method = 0
-             io_one_species_at_a_time = .TRUE.
-         endif
+!         if (io_size .GT. 2147483647) then
+!             if (myid .EQ. 0) then
+!                 print*, '******** Warning ********'
+!                 print*, 'Warning: Array size is too large for 4-byte integers'
+!                 print*, 'Warning: I/O is now performed one species at a time'
+!                 if (method .EQ. 1) &
+!                     print*, 'Warning: Switch to blocking I/O method'
+!                 print*, '******** Warning ********'
+!             endif
+!             method = 0
+!             io_one_species_at_a_time = .TRUE.
+!         endif
 
       end subroutine read_command_line_arg
 

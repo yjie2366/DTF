@@ -131,6 +131,8 @@
               if (err .ne. NF_NOERR) call handle_err('nfmpi_get_file_info', err)
           endif
 
+          call dtf_time_start
+
           if (method .EQ. 1) then  ! using nonblocking APIs
               !---- write array yspecies
               subsizes(4) = nsc + 1
@@ -203,6 +205,8 @@
 
           err = nfmpi_close(ncid)
           if (err .ne. NF_NOERR) call handle_err('nfmpi_close', err)
+
+          call dtf_writetime_end
 
           closeT = closeT + MPI_Wtime() - time_end
 
@@ -294,6 +298,8 @@
           err = nfmpi_inq_varid(ncid, 'temp',     temp_id)
           if (err .ne. NF_NOERR) call handle_err('nfmpi_inq_varid on temp', err)
 
+          call dtf_time_start
+
           if (method .EQ. 1) then  ! using nonblocking APIs
               !---- read array yspecies
               subsizes(4) = nsc + 1
@@ -366,6 +372,8 @@
 
           err = nfmpi_close(ncid)
           if (err .ne. NF_NOERR) call handle_err('nfmpi_close', err)
+
+          call dtf_readtime_end
 
           closeT = closeT + MPI_Wtime() - time_end
 

@@ -34,7 +34,7 @@
          ! local declarations
          integer err, iflag
 
-         i_time_end = 5   ! number of checkpoints (also number of output files)
+         i_time_end = 1   ! number of checkpoints (also number of output files)
          run_title = 'pressure_wave_test'  ! prefix of output file names
 
          ! set iflag

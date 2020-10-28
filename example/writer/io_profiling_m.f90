@@ -185,37 +185,37 @@
  2004         FORMAT(A ,F10.2, A)
  2005         FORMAT(A, i7,' x',i7,' x',i7)
 
-              write(6,*) '++++ I/O is done through PnetCDF ++++'
+              write(0,*) '++++ I/O is done through PnetCDF ++++'
               if (method .EQ. 0) then
-                  write(6,*) 'I/O method          : blocking APIs'
+                  write(0,*) 'I/O method          : blocking APIs'
               else
-                  write(6,*) 'I/O method          : nonblocking APIs'
+                  write(0,*) 'I/O method          : nonblocking APIs'
               endif
               if (restart) then
-                  write(6,*) 'Run with restart    : True'
+                  write(0,*) 'Run with restart    : True'
               else
-                  write(6,*) 'Run with restart    : False'
+                  write(0,*) 'Run with restart    : False'
               endif
-              write(6, 2002) ' No. MPI processes   : ', npes
-              write(6, 2005) ' Global array size   : ', nx_g, ny_g, nz_g
-              write(6, 2001) ' output file path    : ',trim(dir_path)
-              write(6, 2002) ' file striping count : ',striping_factor
-              write(6, 2003) ' file striping size  : ',striping_unit, ' bytes'
-              write(6, 2000) ' -----------------------------------------------'
-              write(6, 2004) ' Time for open       :  ',openT,      ' sec'
-              write(6, 2004) ' Time for read       :  ',readT,      ' sec'
-              write(6, 2004) ' Time for write      :  ',writeT,     ' sec'
-              write(6, 2004) ' Time for close      :  ',closeT,     ' sec'
-              write(6, 2003) ' no. read  calls     :  ',read_num, '    per process'
-              write(6, 2003) ' no. write calls     :  ',write_num,'    per process'
-              write(6, 2004) ' total read  amount  :  ',read_amount ,  ' GiB'
-              write(6, 2004) ' total write amount  :  ',write_amount , ' GiB'
-              write(6, 2004) ' read  bandwidth     :  ',read_bandwidth ,  ' MiB/s'
-              write(6, 2004) ' write bandwidth     :  ',write_bandwidth , ' MiB/s'
-              write(6, 2000) ' -----------------------------------------------'
-              write(6, 2004) ' total I/O   amount  :  ',io_amount , ' GiB'
-              write(6, 2004) ' total I/O   time    :  ',io_time , ' sec'
-              write(6, 2004) ' I/O   bandwidth     :  ',io_bandwidth, ' MiB/s'
+              write(0, 2002) ' No. MPI processes   : ', npes
+              write(0, 2005) ' Global array size   : ', nx_g, ny_g, nz_g
+              write(0, 2001) ' output file path    : ',trim(dir_path)
+              write(0, 2002) ' file striping count : ',striping_factor
+              write(0, 2003) ' file striping size  : ',striping_unit, ' bytes'
+              write(0, 2000) ' -----------------------------------------------'
+              write(0, 2004) ' Time for open       :  ',openT,      ' sec'
+              write(0, 2004) ' Time for read       :  ',readT,      ' sec'
+              write(0, 2004) ' Time for write      :  ',writeT,     ' sec'
+              write(0, 2004) ' Time for close      :  ',closeT,     ' sec'
+              write(0, 2003) ' no. read  calls     :  ',read_num, '    per process'
+              write(0, 2003) ' no. write calls     :  ',write_num,'    per process'
+              write(0, 2004) ' total read  amount  :  ',read_amount ,  ' GiB'
+              write(0, 2004) ' total write amount  :  ',write_amount , ' GiB'
+              write(0, 2004) ' read  bandwidth     :  ',read_bandwidth ,  ' MiB/s'
+              write(0, 2004) ' write bandwidth     :  ',write_bandwidth , ' MiB/s'
+              write(0, 2000) ' -----------------------------------------------'
+              write(0, 2004) ' total I/O   amount  :  ',io_amount , ' GiB'
+              write(0, 2004) ' total I/O   time    :  ',io_time , ' sec'
+              write(0, 2004) ' I/O   bandwidth     :  ',io_bandwidth, ' MiB/s'
           endif
 
           if (info_used .NE. MPI_INFO_NULL) &

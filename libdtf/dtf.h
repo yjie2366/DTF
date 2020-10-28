@@ -35,6 +35,8 @@ _EXTERN_C_ int  dtf_transfer_all_files();
 
 
 /*     Fortran interfaces    */
+void dtf_readtime_end_();
+void dtf_writetime_end_();
 void dtf_time_end_();
 void dtf_time_start_();
 void dtf_init_(const char *filename, char *module_name, int* ierr);
