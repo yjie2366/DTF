@@ -373,6 +373,7 @@ _EXTERN_C_ void dtf_close(const char* filename)
 	}
 	
     gl_proc.stats_info.dtf_time += MPI_Wtime() - t_start;
+    MPI_Barrier(fbuf->comm);
 }
 
 _EXTERN_C_ MPI_Offset dtf_read_write_var(const char *filename,
