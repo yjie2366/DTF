@@ -1117,7 +1117,7 @@ void match_ioreqs_all_files()
 				fbuf->is_transferring = 0;
 				
 				DTF_DBG(VERBOSE_DBG_LEVEL, "Finished match ioreqs for %s", fbuf->file_path);
-				DTF_DBG(VERBOSE_ERROR_LEVEL, "dtf_time transfer for %s: %.4f", fbuf->file_path, MPI_Wtime() - t_start);
+				DTF_DBG(VERBOSE_DBG_LEVEL, "dtf_time transfer for %s: %.4f", fbuf->file_path, MPI_Wtime() - t_start);
 
 				fbuf->cur_transfer_epoch++;
 					

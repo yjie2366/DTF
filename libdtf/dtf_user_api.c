@@ -408,7 +408,7 @@ _EXTERN_C_ int dtf_transfer(const char *filename, int ncid)
     
     gl_proc.stats_info.transfer_time += MPI_Wtime() - t_start;
     gl_proc.stats_info.dtf_time += MPI_Wtime() - t_start;
-    DTF_DBG(VERBOSE_ERROR_LEVEL, "Exit transfer");
+    DTF_DBG(VERBOSE_DBG_LEVEL, "Exit transfer");
     return 0;
 }
 

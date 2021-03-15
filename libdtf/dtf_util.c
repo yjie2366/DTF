@@ -179,7 +179,7 @@ void print_stats()
         data_sz = (unsigned long)(gl_proc.stats_info.data_msg_sz/gl_proc.stats_info.ndata_msg_sent);
         DTF_DBG(VERBOSE_DBG_LEVEL, "DTF STAT: total sent %lu, avg data msg sz %lu (%d msgs)", gl_proc.stats_info.data_msg_sz, data_sz, gl_proc.stats_info.ndata_msg_sent);
     }
-	rb_print_stats();
+	//rb_print_stats();
 
     /*AVERAGE STATS*/
    
