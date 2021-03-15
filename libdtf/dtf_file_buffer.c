@@ -184,7 +184,7 @@ static int init_req_match_masters(MPI_Comm comm, master_info_t *mst_info)
     }
 
     if(myrank == 0)
-        DTF_DBG(-1, "Nmasters %d", mst_info->nmasters);
+        DTF_DBG(VERBOSE_DBG_LEVEL, "Nmasters %d", mst_info->nmasters);
     gl_proc.stats_info.nmasters = mst_info->nmasters;
 
     translate_ranks(&my_master, 1, comm, gl_proc.comps[gl_proc.my_comp].comm, &my_master_glob);

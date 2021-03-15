@@ -381,7 +381,7 @@ _EXTERN_C_ int dtf_transfer(const char *filename, int ncid)
 	double t_start = MPI_Wtime();
 	
     if(!lib_initialized) return 0;
-    DTF_DBG(VERBOSE_ERROR_LEVEL, "Enter match io for %s", filename);
+    DTF_DBG(VERBOSE_DBG_LEVEL, "Enter match io for %s", filename);
   
     fbuf = find_file_buffer(gl_proc.filebuf_list, filename, ncid);
     if(fbuf == NULL){
